@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imger</title>
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/file-list.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Convertidor de Imágenes</h1>
+        
+        <div class="format-control">
+            <label for="imageFormat">Formato de salida:</label>
+            <select id="imageFormat">
+                <optgroup label="Formatos Fotográficos">
+                    <option value="JPEG">JPEG/JPG (fotografías)</option>
+                    <option value="PNG">PNG (sin pérdida)</option>
+                    <option value="WEBP">WEBP (moderno)</option>
+                    <option value="AVIF">AVIF (nueva generación)</option>
+                </optgroup>
+                <optgroup label="Formatos Profesionales">
+                    <option value="TIFF">TIFF (edición)</option>
+                    <option value="PPM">PPM (raw)</option>
+                </optgroup>
+                <optgroup label="Formatos Web">
+                    <option value="GIF">GIF (animación)</option>
+                    <option value="ICO">ICO (favicon)</option>
+                    <option value="BMP">BMP (básico)</option>
+                </optgroup>
+            </select>
+            <div class="format-info"></div>
+        </div>
+
+        <div class="drop-zone" id="dropZone">
+            <p>📁 Arrastra tus imágenes aquí o haz clic para seleccionarlas</p>
+            <div class="supported-formats">
+                Formatos soportados: HEIC, HEIF, JPG, JPEG, PNG, WEBP, AVIF, TIFF, PPM, GIF, ICO, BMP, CR2, NEF, ARW, ORF, RAF, RW2, DNG, PEF
+            </div>
+            <input type="file" id="fileInput" multiple 
+                accept=".heic,.heif,.jpg,.jpeg,.png,.webp,.avif,.tiff,.tif,.ppm,.gif,.ico,.bmp,.cr2,.nef,.arw,.orf,.raf,.rw2,.dng,.pef" 
+                style="display: none;">
+        </div>
+
+        <div id="fileList"></div>
+    </div>
+
+    <!-- Bibliotecas necesarias -->
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/libraw.js@0.4.0/dist/libraw.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html> 

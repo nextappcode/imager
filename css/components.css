@@ -1,0 +1,129 @@
+@import 'variables.css';
+
+/* Drop Zone */
+.drop-zone {
+    border: 3px dashed var(--border-color);
+    padding: 40px 20px;
+    text-align: center;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.drop-zone:hover, 
+.drop-zone.drag-over {
+    border-color: var(--primary-color);
+    background-color: rgba(76, 175, 80, 0.1);
+    transform: scale(1.02);
+}
+
+.drop-zone::before {
+    content: '📁';
+    font-size: 48px;
+    margin-bottom: 10px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.drop-zone.drag-over::before {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.drop-zone p {
+    margin: 10px 0;
+    font-size: 1.2em;
+    color: var(--secondary-text);
+    transition: all 0.3s ease;
+}
+
+.drop-zone.drag-over p {
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* Format Control */
+.format-control {
+    background-color: var(--container-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.format-control select {
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 2px solid #ddd;
+    font-size: 1em;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.format-control select:hover {
+    border-color: var(--primary-color);
+}
+
+/* Info Elements */
+.format-info {
+    background-color: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 12px;
+    font-size: 0.95em;
+    color: var(--secondary-text);
+    border-left: 4px solid var(--primary-color);
+}
+
+.supported-formats {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: var(--secondary-text);
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.drop-zone.drag-over .supported-formats {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Animación de pulso para el borde durante el drag */
+@keyframes pulse {
+    0% { border-color: var(--border-color); }
+    50% { border-color: var(--primary-color); }
+    100% { border-color: var(--border-color); }
+}
+
+.drop-zone.drag-over {
+    animation: pulse 2s infinite;
+}
+
+/* Añadir estos estilos */
+.drop-zone.drag-over.not-allowed {
+    border-color: var(--error-color);
+    background-color: rgba(255, 68, 68, 0.1);
+    animation: none;
+}
+
+.drop-zone.drag-over.not-allowed::before {
+    opacity: 0.3;
+}
+
+/* Cursor personalizado para indicar cuando no se permite */
+.drop-zone.not-allowed {
+    cursor: not-allowed;
+} 
