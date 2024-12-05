@@ -1,6 +1,7 @@
 import { SUPPORTED_INPUT_FORMATS, FORMAT_INFO } from './config.js';
 import { convertFile, convertOtherFormat } from './converter.js';
 import { mostrarError } from './ui.js';
+import { ImageCompressor } from './imageCompressor.js';
 
 // Elementos del DOM
 const dropZone = document.getElementById('dropZone');
@@ -121,6 +122,36 @@ async function handleFiles(files) {
         } else {
             mostrarError(`El archivo ${file.name} no tiene un formato soportado`);
         }
+    }
+}
+
+async function processFile(file) {
+    try {
+        // Primero comprimir sin pérdida
+        const compressedFile = await ImageCompressor.compressWithoutQualityLoss(file);
+        
+        // Luego continuar con la conversión
+        const outputFormat = document.getElementById('imageFormat').value;
+        // ... resto del código de procesamiento ...
+
+        // Actualizar la UI para mostrar la reducción de tamaño
+        const compressionRatio = ((1 - (compressedFile.size / file.size)) * 100).toFixed(2);
+        if (compressionRatio > 0) {
+            // Mostrar información de compresión en la UI
+            const fileItem = document.querySelector(`[data-filename="${file.name}"]`);
+            if (fileItem) {
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'compression-info';
+                infoDiv.textContent = `Compresión sin pérdida: ${compressionRatio}% de reducción`;
+                fileItem.appendChild(infoDiv);
+            }
+        }
+
+        // Continuar con el proceso de conversión
+        return compressedFile;
+    } catch (error) {
+        console.error('Error en el procesamiento:', error);
+        return file; // Devolver archivo original en caso de error
     }
 }
 

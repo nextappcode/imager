@@ -126,4 +126,14 @@
 /* Cursor personalizado para indicar cuando no se permite */
 .drop-zone.not-allowed {
     cursor: not-allowed;
+}
+
+.compression-info {
+    font-size: 0.9em;
+    color: #2ecc71;
+    margin-top: 5px;
+    padding: 3px 8px;
+    background-color: rgba(46, 204, 113, 0.1);
+    border-radius: 4px;
+    display: inline-block;
 } 
